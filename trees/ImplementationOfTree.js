@@ -76,6 +76,51 @@ class BSTTree {
         }
 
     }
+
+    // 1. Preorder Traversal (DFS)
+    // In this traversal the traversal is something like Root -> Left -> Right
+    // First visit the current node then go left and then right.
+
+    PreOrderTraversal = node => {
+        if(!node) return;
+
+        console.log(node.data);
+        // Traverse left subtree.
+        if(node.left) this.PreOrderTraversal(node.left);
+
+        // Now traverse right subtree.
+        if(node.right) this.PreOrderTraversal(node.right);
+    }
+    
+    // In-Order Traversal (DFS)
+    // In this traversal the traversal is something like Left -> Root -> Right
+    InOrderTraversal = node => {
+        if(!node) return;
+
+        // First go to the left part of the tree.
+        if(node.left) this.InOrderTraversal(node.left);
+        
+        // now print the data.
+        console.log(node.data);
+
+        // Now go to right sub-tree.
+        if(node.right) this.InOrderTraversal(node.right);
+    }
+
+    // Post-Order Traversal (DFS).
+    // In this traversal the traversal is something like Left -> Right -> Root.
+    PostOrderTraversal = node => {
+        if(!node) return;
+
+        // First go to left subtree.
+        if(node.left) this.PostOrderTraversal(node.left);
+
+        // Now go to right sub tree.
+        if(!node.right) this.PostOrderTraversal(node.right);
+
+        // Now print the node.
+        console.log(node?.data);
+    }
 }
 
 // Now to call and create the tree.
@@ -86,7 +131,23 @@ for(const value of values) {
     Tree.insert(value);
 }
 
-console.log("--------tree-------")
-console.log(JSON.stringify(Tree));
 
+// Now let's understand how to traverse a Tree.
+// There are mainly 2 types of tree traversal.
+// 1. BFS - Breadth First Search.
+// 2. DFS - Depth First Search
+
+// DFS is sub divided into 3 main types.
+// a. Pre-Order Traversal.
+// b. In-Order Traversal.
+// c. Post-Order Traversal.
+
+console.log("printing pre order")
+Tree.PreOrderTraversal(Tree.root);
+
+console.log("printing In order")
+Tree.InOrderTraversal(Tree.root);
+
+console.log("printing post order");
+Tree.PostOrderTraversal(Tree.root);
 
