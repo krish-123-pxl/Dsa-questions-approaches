@@ -121,6 +121,31 @@ class BSTTree {
         // Now print the node.
         console.log(node?.data);
     }
+
+    // In level-By-Order Traversal.
+    // We first cover all the nodes of that row.
+    // then go to the next level from left part.
+
+    levelByOrder = node => {
+        if(!node) return;
+        
+        // create a queue array.
+        let queue = [];
+        // Push the root element.
+        queue.push(node);
+        
+        // create a loop untill the queue is not empty.
+        while(queue.length) {
+            const current = queue.shift();
+            console.log(current.data);
+            
+            // Now start from the left part again.
+            if(current.left) queue.push(current.left);
+            
+            // Now push the right node.
+            if(current.right) queue.push(current.right);
+        }
+    }
 }
 
 // Now to call and create the tree.
@@ -150,4 +175,7 @@ Tree.InOrderTraversal(Tree.root);
 
 console.log("printing post order");
 Tree.PostOrderTraversal(Tree.root);
+
+console.log("printing level by order");
+Tree.levelByOrder(Tree.root);
 
