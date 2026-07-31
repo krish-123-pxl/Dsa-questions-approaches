@@ -146,6 +146,22 @@ class BSTTree {
             if(current.right) queue.push(current.right);
         }
     }
+
+    // the height of the tree is defined as the maximum number of node present in depth. Either in left subtree or right subtree.
+    heightOfTheTree = (node = this.root) => {
+        // base case for empty tree.
+        // return -1 because Math.max(-1, -1) return 0 and after it add 1 while final return statement. Else each time it will get 0 as max.
+        if(!node) return -1;
+
+        // Now call for the left part of the tree.
+        const leftHeight = this.heightOfTheTree(node.left);
+
+        // Now call for the right part of the tree.
+        const rightHeight = this.heightOfTheTree(node.right);
+
+        // Now return the maximum from these height.
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
 }
 
 // Now to call and create the tree.
